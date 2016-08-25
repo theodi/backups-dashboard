@@ -1,0 +1,56 @@
+---
+---
+
+@import 'bootstrap';
+@import 'https://fonts.googleapis.com/css?family=Merriweather';
+@import 'https://fonts.googleapis.com/css?family=Inconsolata';
+
+$green: #49b82a;
+$red: #cc2129;
+$orange: #fa8100;
+$grey: #cccccc;
+
+body {
+  background-color: $grey;
+}
+
+h1 {
+  text-align: center;
+  font-family: 'Merriweather', serif;
+}
+
+.build {
+  border-color: black;
+
+  h1, h2 {
+    text-align: center;
+    font-family: 'Inconsolata', sans-serif;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+}
+
+.key {
+  border-color: black;
+  font-family: 'Inconsolata', sans-serif;
+  padding: 5px;
+  margin: 5px;
+}
+
+.passed {
+  background-color: $green;
+}
+
+.failed {
+  background-color: $red;
+}
+
+.notrun {
+  background-color: $orange;
+}

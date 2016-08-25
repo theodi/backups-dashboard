@@ -1,2 +1,50 @@
 ---
 ---
+
+<h1>Backup Status</h1>
+
+<div class='row'>
+
+  {% for repo in site.data.repos %}
+    <div class='col-md-4'>
+      <div class='panel build' id='{{ repo | replace: '/', '-' }}'>
+        <h1 id='name'></h1>
+        <h2>Last run: <span id='run-date'>Unknown</span></h2>
+      </div>
+    </div>
+  {% endfor %}
+
+</div>
+
+<p class='text-center'>
+  <span class='panel key passed'>passed</span>
+  <span class='panel key failed'>failed</span>
+  <span class='panel key notrun'>didn't run in the last 24 hours</span>
+</p>
+
+<script>
+  {% for repo in site.data.repos %}
+    {% assign slugged-repo-name = repo | replace: '/', '-' %}
+    $.ajax({
+      url: 'https://api.travis-ci.org/repos/{{ repo }}/builds',
+      type: 'GET',
+      dataType: 'json',
+      success: function(json) {
+        var latest = json['builds'][0]
+        $('#{{ slugged-repo-name }}').addClass(latest['state'])
+        $('#{{ slugged-repo-name }} #name').text(fixName('{{ repo }}'))
+        $('#{{ slugged-repo-name }} #run-date').text(latest['finished_at'])
+      },
+      error: function() {},
+      beforeSend: setHeader
+    })
+
+    function setHeader(xhr) {
+      xhr.setRequestHeader('Accept', 'application/vnd.travis-ci.2+json')
+    }
+
+    function fixName(name) {
+      return name.replace('theodi/backups-', '')
+    }
+  {% endfor %}
+</script>
