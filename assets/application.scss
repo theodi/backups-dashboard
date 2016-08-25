@@ -8,7 +8,9 @@
 $green: #49b82a;
 $red: #cc2129;
 $orange: #fa8100;
-$grey: #cccccc;
+$blue: #1bbcf2;
+$grey: #eeeeee;
+$dark-grey: darken($grey, 10%);
 
 body {
   background-color: $grey;
@@ -53,4 +55,32 @@ h1 {
 
 .notrun {
   background-color: $orange;
+}
+
+.created, .started {
+  background-color: $blue;
+}
+
+$footer-height: 40px;
+
+html {
+  position: relative;
+  min-height: 100%;
+  text-transform: none;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: $footer-height;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  margin-top: $padding-large-vertical;
+  height: $footer-height;
+  border-top: 1px solid $dark-grey;
+  padding: $padding-large-vertical $padding-large-horizontal;
 }

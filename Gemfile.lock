@@ -53,6 +53,12 @@ GEM
       activesupport (>= 2)
       nokogiri (>= 1.4)
     i18n (0.7.0)
+    jasmine (2.4.0)
+      jasmine-core (~> 2.4)
+      phantomjs
+      rack (>= 1.2.1)
+      rake
+    jasmine-core (2.4.1)
     jekyll (3.2.1)
       colorator (~> 1.0)
       jekyll-sass-converter (~> 1.0)
@@ -108,8 +114,11 @@ GEM
       sawyer (~> 0.7.0, >= 0.5.3)
     pathutil (0.14.0)
       forwardable-extended (~> 2.6)
+    phantomjs (2.1.1.0)
     pkg-config (1.1.7)
     public_suffix (1.5.3)
+    rack (2.0.1)
+    rake (11.2.2)
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
@@ -131,6 +140,7 @@ PLATFORMS
 
 DEPENDENCIES
   github-pages
+  jasmine
 
 BUNDLED WITH
    1.12.5

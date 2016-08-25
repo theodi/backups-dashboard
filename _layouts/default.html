@@ -16,6 +16,7 @@
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src='/javascript/bootstrap.js'></script>
+    <script src='/javascript/dashboard.js'></script>
 
     <link rel='stylesheet' href='/assets/application.css' type='text/css' />
     <title>{{ page.title }}</title>
@@ -24,6 +25,15 @@
   <body>
     <div class='container'>
       {{ content }}
+    </div>
+
+    <div class='footer'>
+      <p>
+        <span class='panel key passed'>passed</span>
+        <span class='panel key failed'>failed</span>
+        <span class='panel key started'>running (or scheduled to run)</span>
+        <span class='panel key notrun'>didn't run in the last 24 hours</span>
+      </p>
     </div>
   </body>
 </html>

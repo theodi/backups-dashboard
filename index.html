@@ -16,11 +16,7 @@
 
 </div>
 
-<p class='text-center'>
-  <span class='panel key passed'>passed</span>
-  <span class='panel key failed'>failed</span>
-  <span class='panel key notrun'>didn't run in the last 24 hours</span>
-</p>
+
 
 <script>
   {% for repo in site.data.repos %}
@@ -31,9 +27,20 @@
       dataType: 'json',
       success: function(json) {
         var latest = json['builds'][0]
-        $('#{{ slugged-repo-name }}').addClass(latest['state'])
+        state = getState(latest)
+        var last_run = latest['finished_at']
+
+        if(state == 'started') {
+          last_run = 'running now!'
+        }
+
+        if(state == 'created') {
+          last_run = json['builds'][1]['finished_at']
+        }
+
+        $('#{{ slugged-repo-name }}').addClass(state)
         $('#{{ slugged-repo-name }} #name').text(fixName('{{ repo }}'))
-        $('#{{ slugged-repo-name }} #run-date').text(latest['finished_at'])
+        $('#{{ slugged-repo-name }} #run-date').text(last_run)
       },
       error: function() {},
       beforeSend: setHeader
@@ -41,10 +48,6 @@
 
     function setHeader(xhr) {
       xhr.setRequestHeader('Accept', 'application/vnd.travis-ci.2+json')
-    }
-
-    function fixName(name) {
-      return name.replace('theodi/backups-', '')
     }
   {% endfor %}
 </script>
